@@ -1,30 +1,13 @@
+import html
+import re
+import requests #precisa instar com pip install requests OU python3 -m pip install requests
 import sys
 
-import html
 from lxml import html as et
 from os import listdir, path, remove
-from pprint import pprint
-
-
-import re
-#precisa instar com pip install ?????
-import requests
 
 #constantes
 ARQUIVO = "artigos.csv"
-
-
-#groups é uma lista que vai conter as palavras de cada grupo
-groups = [];
-for fileName in listdir():
-	if fileName.lower().startswith("grupo"):
-		file = open(fileName, "r");
-		groups.append(file.read().splitlines())
-
-if not len(groups):
-	print("Não foram econtrados arquivos com o nome 'grupo*.*'");
-	sys.exit(1);
-
 
 #gerando as combinações entre todos os grupos para formar cada uma das queries
 def combine(list1, list2):
@@ -32,7 +15,6 @@ def combine(list1, list2):
 	for i in list1:
 		for j in list2:
 			combinated.append(i + " AND " + j)
-
 	return combinated
 
 def baixar_conteudo(url, pagina):
@@ -49,7 +31,7 @@ def baixar_conteudo(url, pagina):
 def clean(tag):
 	return tag.text_content().replace("\n", " ").replace("\t", "").replace('"',"").replace(",","").strip()
 
-def extrair_dados(xml):
+def extrair_dados(xml, query):
 	#abre e fecha o arquivo em cada análise, para evitar de perder tudo, caso haja algum erro durante o percurso
 	f = open(ARQUIVO, "a+")
 
@@ -68,7 +50,7 @@ def extrair_dados(xml):
 
 		link = dados_artigo[0][0][0].get("href")
 
-		f.write('"http://www.redalyc.org/{}";"{}";"{}";"{}"\n'.format(link, titulo, autores, revista))
+		f.write('"http://www.redalyc.org/{}";"{}";"{}";"{}";"{}"\n'.format(link, titulo, autores, revista, query))
 
 
 			#Título do Artigo; Autores; Revista; Link para o texto completo., depois uma limpeza na tabela para excluir os resultad
@@ -76,7 +58,18 @@ def extrair_dados(xml):
 	f.close()
 
 
+#groups é uma lista que vai conter as palavras de cada grupo
+groups = [];
+for fileName in listdir():
+	if fileName.lower().startswith("grupo"):
+		file = open(fileName, "r");
+		groups.append(file.read().splitlines())
 
+if not len(groups):
+	print("Não foram econtrados arquivos com o nome 'grupo*.*'");
+	sys.exit(1);
+
+#fazendo a permuta entre os grupos
 queries = groups[0];
 if len(groups) > 1:
 	for i in range(1, len(groups)):
@@ -128,9 +121,8 @@ for q in queries:
 	#analisando as páginas da pesquisa atual
 	while pagina_corrente <= total_paginas:
 		print("       Analisando a página {}/{}".format(pagina_corrente, total_paginas), end="")
-		extrair_dados(xml)
+		extrair_dados(xml, q)
 		print(" > Análise concluída!")
-
 
 		#pegando dados da próxima pagina
 		pagina_corrente += 1
