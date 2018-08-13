@@ -3,3 +3,4 @@ py -m pip install requests
 
 py crawler.py
 py analyser.py
+pause
