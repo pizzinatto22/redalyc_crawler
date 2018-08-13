@@ -5,7 +5,7 @@ ARQUIVO = "artigos.csv"
 ARQUIVO_PROCESSADO = "artigos_processados.csv"
 
 csvfile = open('artigos.csv')
-csvreader = csv.reader(csvfile)
+csvreader = csv.reader(csvfile, delimiter=';', quotechar='"')
 
 data = {}
 
@@ -21,8 +21,8 @@ for row in csvreader:
 
 
 f = open(ARQUIVO_PROCESSADO, "w")
-for d in data:
-	row = '";"'.join(d)
+for key in data:
+	row = '";"'.join(data[key])
 	f.write('"{}"\n'.format(row))
 
 f.close()
