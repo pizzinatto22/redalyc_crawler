@@ -20,7 +20,7 @@ for row in csvreader:
 		data[row[0]] = row
 
 
-f = open(ARQUIVO_PROCESSADO, "w")
+f = open(ARQUIVO_PROCESSADO, "w", encoding="utf-8")
 for key in data:
 	row = '";"'.join(data[key])
 	f.write('"{}"\n'.format(row))
