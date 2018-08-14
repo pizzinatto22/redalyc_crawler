@@ -33,7 +33,7 @@ def clean(tag):
 
 def extrair_dados(xml, query):
 	#abre e fecha o arquivo em cada análise, para evitar de perder tudo, caso haja algum erro durante o percurso
-	f = open(ARQUIVO, "a+")
+	f = open(ARQUIVO, "a+", encoding="utf-8")
 
 	#pega todos os artigos da pagina
 	linhas = xml.xpath("//div[@id='lista']//table[contains(@class, 'dr-table')]//tr[contains(@class, 'dr-table-row')]")
