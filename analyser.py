@@ -2,7 +2,7 @@ import csv
 
 #constantes
 ARQUIVO = "artigos.csv"
-ARQUIVO_PROCESSADO = "artigos_processados.csv"
+ARQUIVO_PROCESSADO = "artigos_não_duplicados.csv"
 
 csvfile = open('artigos.csv', encoding="utf-8")
 csvreader = csv.reader(csvfile, delimiter=';', quotechar='"')
