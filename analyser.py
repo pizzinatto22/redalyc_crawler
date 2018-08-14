@@ -4,7 +4,7 @@ import csv
 ARQUIVO = "artigos.csv"
 ARQUIVO_PROCESSADO = "artigos_processados.csv"
 
-csvfile = open('artigos.csv')
+csvfile = open('artigos.csv', encoding="utf-8")
 csvreader = csv.reader(csvfile, delimiter=';', quotechar='"')
 
 data = {}
