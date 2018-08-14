@@ -1,6 +1,6 @@
 ############################################################################
 ########## Esse robô foi desenvolvido por Luiz Eduardo Pizzinatto ##########
-#### Tem como finalidade fazer busca sistemática na base de dados Redaly ###
+#### Tem como finalidade fazer busca sistemática na base de dados Redalyc ##
 ############################################################################
 
 - A plataforma Redalyc não tem as funções de operadores booleanos entre grupos e também;
