@@ -1,5 +1,5 @@
 # Redalyc crawler
-Tem como finalidade fazer busca sistemática na base de dados Redalyc
+Tem como finalidade fazer busca sistemática na base de dados Redalyc (crawler de informações).
 
 O que motivou a criação desse robô:
 * A plataforma Redalyc não tem as funções de operadores booleanos entre grupos;
