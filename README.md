@@ -15,17 +15,29 @@ Luiz Eduardo Pizzinatto
 1. Depois, crie uma pasta qualquer em seu computador e baixe e descompte os arquivos do robô. Disponíveis em: https://github.com/pizzinatto22/redalyc_crawler/archive/master.zip
 1. Execute o arquivo `instalar_bibliotecas_python.bat`
 1. Criar os arquivos `grupo1.txt`, `grupo2.txt`, `grupo3.txt`, etc. Cada arquivo para um grupo de descritores. E cada descritor em uma linha. Exemplos:
- * Arquivo1: `grupo1.txt`
-  * Universidades
-  * Gestão_universitária
-  * Instituições_de_ensino_superior
- * Arquivo2: `grupo2.txt`
-  * gestão_democrática
-  * gestão_participativa
-  * democracia
+	* Arquivo1: `grupo1.txt`
+		* Universidades
+		* Gestão_universitária
+		* Instituições_de_ensino_superior
+	* Arquivo2: `grupo2.txt`
+		* gestão_democrática
+		* gestão_participativa
+		* democracia
 1. Execute o arquivo `executar.bat`
- 1. Será criado um arquivo chamado `artigos.csv` com o resultado de todas as consultas, posteriormente, o robô fará uma análise para exclusão de resultados iguais (pela id do artigo), gerando um arquivo `artigos_não_duplicados.csv`.
+ 	* Será criado um arquivo chamado `artigos.csv` com o resultado de todas as consultas, posteriormente, o robô fará uma análise para exclusão de resultados iguais (pela id do artigo), gerando um arquivo `artigos_não_duplicados.csv`.
 1. O arquivo `artigos_não_duplicados.csv` deverá ser aberto pelo LibreOffice, selecionando o conjunto de caracteres "Unicode UTF-8".
+
+Se você estiver executando em um sistema Unix like, instalar as bibliotecas:
+```
+pip3 install lxml
+pip3 install requests
+```
+
+Depois disso, para executar o crawler:
+```
+python3 crawler.py
+python3 analyser.py
+```
 
 # Informações
 Observações da estrutura de busca:
